@@ -3,270 +3,253 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EXTINBOGOTÁ | Metallic & Cold Edition</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>ExtinMax - Recarga de Extintores en Bogotá</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
-        :root {
-            --metal-silver: #e2e8f0;
-            --arctic-cyan: #00f2ff;
-            --titanium-blue: #1e293b;
-            --deep-space: #020617;
-            --glow-cyan: 0 0 20px rgba(0, 242, 255, 0.6);
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        body { font-family: 'Inter', system-ui, sans-serif; }
+        .hero-bg { background: linear-gradient(135deg, #1a0000 0%, #2c0000 100%); }
+        canvas#particles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; opacity: 0.9; }
+        .content-over { position: relative; z-index: 2; }
+        .fire-glow { text-shadow: 0 0 25px #ff3b3b, 0 0 50px #ff9500; }
+        
+        .service-img {
+            transition: all 0.4s ease;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Exo 2', 'Segoe UI', sans-serif;
-        }
-
-        body {
-            background-color: var(--deep-space);
-            color: var(--metal-silver);
-            overflow-x: hidden;
-        }
-
-        /* FONDO DINÁMICO METÁLICO */
-        .metal-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: 
-                linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(2, 6, 23, 0.9) 100%),
-                url('https://www.transparenttextures.com/patterns/brushed-alum.png');
-        }
-
-        /* EFECTO DE RAYOS LÁSER AZULES (MOVIMIENTO) */
-        .beam {
-            position: fixed;
-            width: 1px;
-            height: 200px;
-            background: linear-gradient(to bottom, transparent, var(--arctic-cyan), transparent);
-            opacity: 0.3;
-            animation: moveBeams 8s linear infinite;
-        }
-
-        @keyframes moveBeams {
-            0% { transform: translateY(-200px) translateX(0); opacity: 0; }
-            50% { opacity: 0.5; }
-            100% { transform: translateY(110vh) translateX(100vw); opacity: 0; }
-        }
-
-        /* NAVEGACIÓN */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 25px 8%;
-            background: rgba(2, 6, 23, 0.8);
-            border-bottom: 2px solid var(--arctic-cyan);
-            backdrop-filter: blur(15px);
-            box-shadow: var(--glow-cyan);
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 900;
-            letter-spacing: 4px;
-            color: #fff;
-            text-transform: uppercase;
-        }
-
-        .logo span {
-            color: var(--arctic-cyan);
-            text-shadow: var(--glow-cyan);
-        }
-
-        /* HERO SECTION */
-        .hero {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 90vh;
-            padding: 0 8%;
-            gap: 40px;
-        }
-
-        .hero-text { flex: 1; }
-
-        .hero-text h1 {
-            font-size: 4.5rem;
-            text-transform: uppercase;
-            font-style: italic;
-            line-height: 1;
-            margin-bottom: 20px;
-            background: linear-gradient(to bottom, #fff 30%, var(--arctic-cyan) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* IMAGEN CENTRAL CROMADA */
-        .hero-image {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            position: relative;
-        }
-
-        .extinguisher-img {
-            width: 100%;
-            max-width: 400px;
-            filter: drop-shadow(0 0 30px var(--arctic-cyan)) brightness(1.1) contrast(1.2);
-            animation: float 4s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-20px) scale(1.02); }
-        }
-
-        /* BOTÓN METÁLICO */
-        .btn-cold {
-            background: linear-gradient(135deg, var(--arctic-cyan) 0%, #0088ff 100%);
-            color: var(--deep-space);
-            padding: 20px 45px;
-            font-weight: 900;
-            text-decoration: none;
-            display: inline-block;
-            border-radius: 0 20px 0 20px;
-            text-transform: uppercase;
-            box-shadow: var(--glow-cyan);
-            transition: 0.4s;
-            border: 2px solid white;
-        }
-
-        .btn-cold:hover {
-            transform: scale(1.1) rotate(-2deg);
-            box-shadow: 0 0 40px var(--arctic-cyan);
-        }
-
-        /* SERVICIOS ESTILO CROMO */
-        .services-container {
-            display: flex;
-            gap: 20px;
-            padding: 60px 8%;
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        .service-card {
-            background: linear-gradient(145deg, #1e293b, #020617);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 40px 20px;
-            flex: 1;
-            text-align: center;
-            position: relative;
-            transition: 0.3s;
-        }
-
-        .service-card::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 5px;
-            background: var(--arctic-cyan);
-            box-shadow: var(--glow-cyan);
-        }
-
-        .service-card:hover {
-            background: var(--titanium-blue);
-            transform: translateY(-10px);
-            border-color: var(--arctic-cyan);
-        }
-
-        .service-card i {
-            font-size: 3rem;
-            color: #fff;
-            margin-bottom: 15px;
-            text-shadow: var(--glow-cyan);
-        }
-
-        /* CONTACTO INDUSTRIAL */
-        .footer-info {
-            padding: 50px 8%;
-            text-align: center;
-            border-top: 1px solid var(--titanium-blue);
-        }
-
-        .status-tag {
-            background: rgba(0, 242, 255, 0.1);
-            color: var(--arctic-cyan);
-            padding: 5px 15px;
-            border: 1px solid var(--arctic-cyan);
-            border-radius: 50px;
-            font-size: 0.8rem;
-            margin-bottom: 20px;
-            display: inline-block;
-        }
-
-        @media (max-width: 900px) {
-            .hero { flex-direction: column; text-align: center; padding-top: 50px; }
-            .hero-text h1 { font-size: 3rem; }
-            .services-container { flex-direction: column; }
+        .service-img:hover {
+            transform: scale(1.05);
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,900;1,900&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="bg-zinc-950 text-white">
 
-    <div class="metal-bg"></div>
-    <div id="beams-container"></div>
+    <!-- HEADER -->
+    <header class="bg-black/90 backdrop-blur-md border-b border-red-600/30 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-gradient-to-br from-red-600 to-orange-500 rounded-2xl flex items-center justify-center text-3xl font-bold shadow-lg shadow-red-500/50">
+                    🔥
+                </div>
+                <div>
+                    <h1 class="text-3xl font-bold">ExtinMax</h1>
+                    <p class="text-xs text-orange-400 -mt-1">Seguridad Contra Incendios</p>
+                </div>
+            </div>
 
-    <nav>
-        <div class="logo">METAL<span>EXTIN</span></div>
-        <div class="contact">
-            <i class="fas fa-snowflake"></i> RECARGA URGENTE: (601) 234 5678
+            <nav class="hidden md:flex gap-8 text-lg">
+                <a href="#" class="hover:text-orange-400 transition">Inicio</a>
+                <a href="#servicios" class="hover:text-orange-400 transition">Servicios</a>
+                <a href="#galeria" class="hover:text-orange-400 transition">Galería</a>
+                <a href="#domicilio" class="hover:text-orange-400 transition">Domicilio</a>
+                <a href="#contacto" class="hover:text-orange-400 transition">Contacto</a>
+            </nav>
+
+            <a href="https://wa.me/573150978792" target="_blank"
+               class="bg-green-500 hover:bg-green-600 px-6 py-3 rounded-2xl font-semibold flex items-center gap-2 transition">
+                <i class="fab fa-whatsapp text-xl"></i>
+                <span>WhatsApp</span>
+            </a>
         </div>
-    </nav>
+    </header>
 
-    <section class="hero">
-        <div class="hero-text">
-            <div class="status-tag">SISTEMA CRIOGÉNICO ACTIVO</div>
-            <h1>PROTECCIÓN DE ACERO</h1>
-            <p style="font-size: 1.1rem; margin-bottom: 30px; color: #94a3b8;">Tecnología metálica para la seguridad de Bogotá. Recargas de alta presión y mantenimiento industrial garantizado.</p>
-            <a href="#" class="btn-cold">Solicitar Servicio Bogotá</a>
-        </div>
-        <div class="hero-image">
-            <img src="https://cdn-icons-png.flaticon.com/512/785/785116.png" class="extinguisher-img" alt="Titanium Extinguisher">
+    <!-- HERO -->
+    <section class="hero-bg min-h-screen flex items-center relative overflow-hidden">
+        <canvas id="particles"></canvas>
+        
+        <div class="max-w-7xl mx-auto px-6 py-24 content-over">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="inline-flex items-center gap-2 bg-white/10 px-5 py-2 rounded-full border border-red-500/30">
+                        <div class="w-3 h-3 bg-orange-400 rounded-full animate-pulse"></div>
+                        <span class="text-sm font-medium">Servicio técnico certificado en Bogotá</span>
+                    </div>
+
+                    <h2 class="text-6xl md:text-7xl font-bold leading-tight fire-glow">
+                        RECARGA DE<br>EXTINTORES<br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-400">PROFESIONAL Y RÁPIDA</span>
+                    </h2>
+
+                    <p class="text-2xl text-gray-300">
+                        Mantenimiento, recarga y certificación de extintores con domicilio en toda Bogotá.
+                    </p>
+
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#contacto" class="bg-gradient-to-r from-red-600 to-orange-500 px-10 py-5 rounded-3xl font-bold text-xl flex items-center gap-3">
+                            Solicitar Servicio Ahora
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="https://wa.me/573150978792" target="_blank"
+                           class="border border-orange-400 px-8 py-5 rounded-3xl font-semibold text-xl flex items-center gap-3 hover:bg-white/10">
+                            <i class="fab fa-whatsapp"></i> Chatear
+                        </a>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <img src="W49Ux.jpg" alt="Técnico recargando extintor profesional" 
+                         class="rounded-3xl shadow-2xl border border-red-500/30">
+                    <div class="absolute -bottom-6 -right-6 bg-black/90 px-8 py-5 rounded-2xl border border-orange-500">
+                        <p class="text-orange-400 font-bold">⏱ Llegada en menos de 60 minutos</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section class="services-container">
-        <div class="service-card">
-            <i class="fas fa-shield-virus"></i>
-            <h3>RECARGA CO2</h3>
-            <p>Máxima pureza y presión para equipos electrónicos y oficinas.</p>
-        </div>
-        <div class="service-card">
-            <i class="fas fa-industry"></i>
-            <h3>PLAN INDUSTRIAL</h3>
-            <p>Atención masiva para fábricas y bodegas en Bogotá.</p>
-        </div>
-        <div class="service-card">
-            <i class="fas fa-shipping-fast"></i>
-            <h3>DOMICILIO FRÍO</h3>
-            <p>Logística blindada con entrega inmediata en 4 horas.</p>
+    <!-- SERVICIOS -->
+    <section id="servicios" class="py-24 bg-zinc-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-5xl font-bold text-center mb-16">Nuestros Servicios</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-zinc-800 p-8 rounded-3xl hover:border-red-500 border border-transparent transition group">
+                    <img src="Gemini_Generated_Image_2airsz2airsz2air.png" alt="Recarga de extintor PQS" 
+                         class="service-img w-full h-56 object-cover rounded-2xl mb-6">
+                    <h3 class="text-2xl font-semibold">Recarga de Extintores</h3>
+                    <p class="text-gray-400 mt-3">PQS, BC, ABC, CO₂ y Halón. Material certificado.</p>
+                </div>
+
+                <div class="bg-zinc-800 p-8 rounded-3xl hover:border-red-500 border border-transparent transition group relative">
+                    <img src="2ext.png" alt="Mantenimiento y prueba hidrostática" 
+                         class="service-img w-full h-56 object-cover rounded-2xl mb-6">
+                    <span class="absolute -top-4 right-6 bg-orange-500 text-black text-xs font-bold px-4 py-1 rounded-full">CERTIFICADO</span>
+                    <h3 class="text-2xl font-semibold">Mantenimiento y Pruebas</h3>
+                    <p class="text-gray-400 mt-3">Inspección anual, prueba hidrostática y sellos NTC.</p>
+                </div>
+
+                <div class="bg-zinc-800 p-8 rounded-3xl hover:border-red-500 border border-transparent transition group">
+                    <img src="3cx.png" alt="Retiro y entrega de extintores" 
+                         class="service-img w-full h-56 object-cover rounded-2xl mb-6">
+                    <h3 class="text-2xl font-semibold">Retiro y Entrega</h3>
+                    <p class="text-gray-400 mt-3">Recogemos tus extintores vacíos y entregamos los recargados.</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer class="footer-info">
-        <p><i class="fas fa-map-marker-alt"></i> ZONA INDUSTRIAL BOGOTÁ - CARRERA 50 # 10-20</p>
-        <p style="opacity: 0.5; margin-top: 10px;">&copy; 2026 METALEXTIN BOGOTÁ | HIGH-PRESSURE SAFETY</p>
+    <!-- PAGOS Y DOMICILIO -->
+    <section class="py-20 bg-zinc-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12">Formas de Pago</h2>
+            <div class="flex flex-wrap justify-center gap-12 text-center mb-20">
+                <div>
+                    <div class="text-6xl mb-4">📱</div>
+                    <h3 class="text-2xl font-semibold">Nequi</h3>
+                    <p class="text-orange-400">Pago instantáneo</p>
+                </div>
+                <div>
+                    <div class="text-6xl mb-4">🏦</div>
+                    <h3 class="text-2xl font-semibold">PSE</h3>
+                    <p class="text-orange-400">Desde cualquier banco</p>
+                </div>
+                <div>
+                    <div class="text-6xl mb-4">💵</div>
+                    <h3 class="text-2xl font-semibold">Efectivo</h3>
+                    <p class="text-orange-400">Al recibir el servicio</p>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <h2 class="text-5xl font-bold mb-6">🚀 Domicilio en Toda Bogotá</h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                    Atendemos Chapinero, Usaquén, Suba, Engativá, Kennedy, Fontibón, Teusaquillo, Bosa y toda Bogotá D.C.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="py-24 bg-zinc-950">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-5xl font-bold">¿Necesitas recargar tus extintores?</h2>
+                <p class="text-orange-400 text-2xl mt-4">Respuesta inmediata</p>
+            </div>
+
+            <div class="max-w-2xl mx-auto bg-zinc-900 rounded-3xl p-12 border border-red-500/20">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <a href="https://wa.me/573150978792" target="_blank"
+                       class="bg-green-600 hover:bg-green-500 py-10 rounded-2xl text-center text-2xl font-semibold transition flex items-center justify-center gap-4">
+                        <i class="fab fa-whatsapp text-4xl"></i>
+                        <div>WhatsApp<br><span class="text-xl">3150978792</span></div>
+                    </a>
+                    
+                    <div class="bg-zinc-800 py-10 rounded-2xl text-center text-2xl font-semibold flex flex-col items-center justify-center gap-2">
+                        <i class="fas fa-phone text-4xl text-orange-400"></i>
+                        <div>(601)32245163</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black py-12 border-t border-red-900">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex justify-center items-center gap-3 mb-6">
+                <div class="w-10 h-10 bg-gradient-to-br from-red-600 to-orange-500 rounded-2xl flex items-center justify-center text-3xl">🔥</div>
+                <h1 class="text-3xl font-bold">ExtinMax</h1>
+            </div>
+            <p>Recarga • Mantenimiento • Certificación de Extintores • Bogotá D.C.</p>
+            <p class="text-sm text-gray-500 mt-6">© 2026 ExtinMax - Servicio Técnico Profesional</p>
+        </div>
     </footer>
 
     <script>
-        // Crear rayos de luz animados
-        const container = document.getElementById('beams-container');
-        for (let i = 0; i < 15; i++) {
-            const beam = document.createElement('div');
-            beam.className = 'beam';
-            beam.style.left = Math.random() * 100 + 'vw';
-            beam.style.animationDuration = (Math.random() * 4 + 4) + 's';
-            beam.style.animationDelay = Math.random() * 8 + 's';
-            container.appendChild(beam);
+        // Particles (efecto fuego/rojo)
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         }
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 0.5;
+                this.speedX = Math.random() * 1.4 - 0.7;
+                this.speedY = Math.random() * 1.4 - 0.7;
+                this.color = Math.random() > 0.5 ? '#ff9500' : '#ff3b3b';
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 18;
+                ctx.shadowColor = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            particles = [];
+            for (let i = 0; i < 200; i++) particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', () => { resize(); init(); });
+        resize();
+        init();
+        animate();
     </script>
 </body>
 </html>
