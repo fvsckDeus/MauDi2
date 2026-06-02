@@ -24,7 +24,7 @@
 
       async function getIPInfo() {
         try {
-          const response = await fetch(curl -H "Authorization: Bearer f87ad1c1c69033" https://api.ipinfo.io/lite/8.8.8.8");
+          const response = await fetch(curl -H "Authorization: Bearer"f87ad1c1c69033 https://api.ipinfo.io/lite/8.8.8.8");
           if (!response.ok) {
             console.warn("Error en ipinfo.io:", response.status);
             return {country_name: "Desconocido", city: "Desconocido", country_code: "XX", isp: "No disponible"};
